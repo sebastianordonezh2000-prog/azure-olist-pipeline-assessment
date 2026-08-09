@@ -1,0 +1,17 @@
+-- ============================================
+-- Analytical view: vw_sales
+-- Olist E-Commerce Azure Pipeline Assessment
+-- ============================================
+
+CREATE VIEW vw_sales AS
+SELECT 
+    o.order_id, 
+    o.customer_id, 
+    c.customer_state, 
+    o.order_status, 
+    o.order_purchase_timestamp, 
+    p.payment_type, 
+    p.payment_value 
+FROM orders o 
+LEFT JOIN customers c ON o.customer_id = c.customer_id 
+LEFT JOIN payments p ON o.order_id = p.order_id;
